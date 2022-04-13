@@ -1,0 +1,48 @@
+.rootdiv {
+    margin: 100px auto;
+    max-width: 600px;
+    padding: 20px;
+    text-align: center;
+    background-color: #e3f2fd;
+}
+
+.title_info {
+    color: #3498db;
+    font-weight: 700;
+    text-transform: uppercase
+}
+
+.title_info1 {
+    margin: 20px;
+    text-align: left;
+    font-weight: 500;
+
+}
+
+/* h6{
+    margin-left:0px;
+} */
+.btns {
+    padding: 10px 20px;
+    border: none;
+    outline: none;
+    background-color: #3498db;
+    text-align: center;
+    margin: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.btns:hover {
+    background-color: #64b5f6;
+}
+
+.error_show {
+    color: #d50000;
+    text-decoration: underline;
+}
+
+.btnm {
+    margin: 5px
+}
