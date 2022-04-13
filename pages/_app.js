@@ -11,6 +11,7 @@ function MyApp({ Component, pageProps }) {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
+    
     auth.onAuthStateChanged(user => {
       if (user) {
         setUser(user)

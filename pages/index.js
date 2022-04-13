@@ -1,11 +1,15 @@
 import { db } from "./firebase";
 import { useState, useEffect } from "react";
 import styles from "../styles/post.module.css";
+import Link from 'next/link'
 
 const Home = ({ user }) => {
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
-  const [comment, setComment] = useState("");
+  const [comment,setComment]= useState([]);
+ 
+  
+  
 
   useEffect(() => {
     const getAllUserPosts = db
@@ -34,6 +38,7 @@ const Home = ({ user }) => {
     // return () => getAllUserPosts
   }, []);
   //
+
 
   useEffect(() => {
     if (!userPosts.length) {
@@ -79,18 +84,19 @@ const Home = ({ user }) => {
     });
     // return getAllUsers
   }, [userPosts]);
-  // const handleChangeComment = (event) => {
-  //   setComment({
-  //     comment: event.target.value,
-  //   });
-  // };
 
-  const handleComment = () => {
-    console.log("Check comment", comment);
-    // console.log("Hello word");
-  };
+  useEffect(()=>{
+
+  })
+
+  // const handleComment = ()=>{
+  //   console.log(post)
+  // }
+
+
+ 
   return (
-    <div div className="center">
+    <div className="center">
       {user ? (
         <>
           {posts.map((post) => {
@@ -113,6 +119,13 @@ const Home = ({ user }) => {
                     Create At: {post.createAtTime}, {post.createAt}
                   </p>
                 </div>
+                <div className="card-action">
+                  <Link href={`/posts/${post.id}`}>
+                    <a>Read More</a>
+                  </Link>
+                </div>
+
+                
 
                 <div>
                   <form>
@@ -120,14 +133,14 @@ const Home = ({ user }) => {
                       placeholder="Write your comment here"
                       value={comment}
                       onChange={(event) => {
-                        setComment(event.target.value)
+                        setComment(event.target.value);
                       }}
                     ></textarea>
                     <div className={styles.comment_box}>
                       <button
                         type="button"
                         className={styles.btn_submit}
-                        onClick={handleComment}
+                       
                       >
                         Submit
                       </button>
@@ -146,8 +159,6 @@ const Home = ({ user }) => {
 
       <style jsx>
         {`
-          
-
           .card {
             max-width: 500px;
             margin: 70px auto;

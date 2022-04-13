@@ -45,7 +45,7 @@ function info({ user }) {
   return (
     <div className={styles.rootdiv}>
       <div>
-        <h5 className="styles.title_info">Information User</h5>
+        <h5 className={styles.title_info}>Information User</h5>
       </div>
       {user ? (
         <>
@@ -92,12 +92,11 @@ function info({ user }) {
             />
             <Link href="/users/updateuser">
               <a className="btnm btn #00796b teal darken-2 ">
-                {" "}
                 <FontAwesomeIcon
                   icon={faPencil}
                   style={{ fontSize: 15, color: "black" }}
-                /> 
-                Update
+                /> Update
+                
               </a>
             </Link>
           </div>
