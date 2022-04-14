@@ -28,19 +28,20 @@ const  SubmitComment =({commentId})=> {
                 value={comment}
                 onChange={(event) => {
                   setComment(event.target.value);
-                }}
-              ></textarea>
+                }}></textarea>
+              
               <div className={styles.comment_box}>
                 <button onClick={()=>handleComment()} type="button" className={styles.btn_submit}>
                   Submit
                 </button>
               </div>
             </form>
-
     </div>
   )
 }
 
 export default SubmitComment
+
+// đầu tiên lấy uID của toàn bộ post lấy cả 
 
 

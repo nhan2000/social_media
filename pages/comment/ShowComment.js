@@ -11,8 +11,8 @@ const ShowComment = ({ user, commentId }) => {
           snap.forEach(
             (doc)=>{
               postComments.push({
-                uid: doc.ref.parent.parent.id,
-                upid: doc.id,
+                idPost: doc.ref.parent.parent.id,
+                idComment: doc.id,
                 data: {
                   content:doc.data().comment
                 }
@@ -21,11 +21,31 @@ const ShowComment = ({ user, commentId }) => {
           setComment(postComments);
         }) 
     },[])
-    
+
+    useEffect(()=>{
+      if(!comment){
+        return
+      }
+
+
+    })
+
+    console.log("check comment:", comment);
+
+
+
   return (
     <div className="show_comment">
-      ShowComment ___
+      Id_post ___
       {commentId}
+      {comment.map(item=>{
+        return (
+          <li key={item.id}>{item.data.content}</li>
+        )
+
+      })
+       
+      }
 
       {/* {comment.data.content} */}
 
