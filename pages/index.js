@@ -1,18 +1,15 @@
 import { db } from "./firebase";
 import { useState, useEffect } from "react";
 import styles from "../styles/post.module.css";
-import Link from 'next/link'
+import Post from "./posts/Post";
 
 const Home = ({ user }) => {
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
-  const [comment,setComment]= useState([]);
+  // console.log("check user: ", user)
  
-  
-  
-
   useEffect(() => {
-    const getAllUserPosts = db
+    db
       .collectionGroup("userPost")
       .orderBy("createdAt", "desc")
       .onSnapshot((snapshot) => {
@@ -26,10 +23,7 @@ const Home = ({ user }) => {
               content: doc.data().content,
               imageUrl: doc.data().imageUrl,
               createdAt: doc.data().createdAt.toDate().toDateString(),
-              createAtTime: doc
-                .data()
-                .createdAt.toDate()
-                .toLocaleTimeString("en-US"),
+              createAtTime: doc.data().createdAt.toDate().toLocaleTimeString("en-US"),
             },
           });
         });
@@ -85,16 +79,7 @@ const Home = ({ user }) => {
     // return getAllUsers
   }, [userPosts]);
 
-  useEffect(()=>{
 
-  })
-
-  // const handleComment = ()=>{
-  //   console.log(post)
-  // }
-
-
- 
   return (
     <div className="center">
       {user ? (
@@ -102,51 +87,15 @@ const Home = ({ user }) => {
           {posts.map((post) => {
             return (
               <div className="card" key={post.id}>
-                <div className={styles.flex}>
-                  <span className="custom_author btn">
-                    Author: <span>{post.authour}</span>
-                  </span>
-                </div>
-                <div className="card-image">
-                  <img src={post.imageUrl} />
-                </div>
-                <div className={styles.title_card}>{post.title}</div>
-                <div className={styles.card_body}>
-                  <p>{post.content}</p>
-                </div>
-                <div>
-                  <p className={styles.create_at}>
-                    Create At: {post.createAtTime}, {post.createAt}
-                  </p>
-                </div>
+
+                <Post post={post} user={user}/>
+                
+                {/* <Comment posts= {post} user={user}/>
                 <div className="card-action">
                   <Link href={`/posts/${post.id}`}>
                     <a>Read More</a>
                   </Link>
-                </div>
-
-                
-
-                <div>
-                  <form>
-                    <textarea
-                      placeholder="Write your comment here"
-                      value={comment}
-                      onChange={(event) => {
-                        setComment(event.target.value);
-                      }}
-                    ></textarea>
-                    <div className={styles.comment_box}>
-                      <button
-                        type="button"
-                        className={styles.btn_submit}
-                       
-                      >
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
+                </div> */}
               </div>
             );
           })}

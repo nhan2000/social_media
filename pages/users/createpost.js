@@ -2,13 +2,16 @@
 import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
 import { storage, db, serverTimestamp } from '../firebase'
+import Router from "next/router";
+
 
 export default function createpost({ user }) {
     const [title, setTitle] = useState('')
     const [content, setcontent] = useState('')
     const [image, setImage] = useState(null)
-
     const [url, setUrl] = useState('')
+
+    
     useEffect(() => {
         if (url) {
             try {
@@ -19,12 +22,14 @@ export default function createpost({ user }) {
                     createdAt: new Date()
                 })
                 M.toast({ html: 'Blog Created', classes: "#00796b teal darken-2" })
+                Router.push('/');
 
             } catch (err) {
                 M.toast({ html: 'Error creating blog', classes: "red" })
             }
         }
     }, [url])
+
     const SubmitDetails = () => {
         if (!title || !content || !image) {
             M.toast({ html: 'Please add all the fields', classes: "red" })
@@ -53,7 +58,7 @@ export default function createpost({ user }) {
     }
     return (
         <div className="input-field rootdiv">
-            <h3>Create Post</h3>
+            <h3 className='title_create'>Create Post</h3>
             <input
                 type="text"
                 value={title}
@@ -81,7 +86,11 @@ export default function createpost({ user }) {
 
             <style jsx>
                 {`
-                
+                .title_create {
+                    text-transform:uppercase;
+                    color: #3498db;
+                    text-decoration: underline;
+                }
                 .rootdiv{
                     margin:100px auto;
                     max-width:600px;

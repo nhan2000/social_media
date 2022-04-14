@@ -1,6 +1,6 @@
 import '../styles/globals.css'
 import Head from 'next/head'
-import Navbar from './components/Navbar'
+import Navbar from './header/Navbar'
 import { auth } from './firebase'
 import { useState, useEffect } from 'react'
 import "@fortawesome/fontawesome-svg-core/styles.css"; // import Font Awesome CSS
