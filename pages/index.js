@@ -31,7 +31,8 @@ const Home = ({ user }) => {
       });
     // return () => getAllUserPosts
   }, []);
-  //
+
+  // console.log("check Userpost:", userPosts);
 
 
   useEffect(() => {
@@ -79,6 +80,8 @@ const Home = ({ user }) => {
     // return getAllUsers
   }, [userPosts]);
 
+
+  // console.log("check posts:", posts);
 
   return (
     <div className="center">

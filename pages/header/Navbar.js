@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import { auth } from '../firebase'
+import Search from './Search'
+
+
 export default function Navbar({ user }) {
 
     return (
@@ -9,6 +12,8 @@ export default function Navbar({ user }) {
                 <ul className="right hide-on-med-and-down">
                     {user ?
                         <>
+                            {/* <Search/> */}
+                            <Search/>
                             <Link href="/users/createpost" ><a className="btn #ff80ab pink accent-1"> Create Post</a></Link>
                             <Link href="/users/info" ><a className="btn #00796b teal darken-2 btnm">Info</a></Link>
                             <a className="waves-effect waves-light btn #00796b teal darken-2 btnm" onClick={() => auth.signOut(
