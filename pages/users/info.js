@@ -20,7 +20,7 @@ function info({ user }) {
   // const { createAt, setCreate } = useEffect('')
   // console.log(createAt);
   useEffect(() => {
-    db.collection("users")
+    const userdb= db.collection("users")
       .doc(user.uid)
       .onSnapshot((doc) => {
         if (doc.data().updateAt) {
@@ -37,6 +37,8 @@ function info({ user }) {
           ),
           setcreatedAtDate(doc.data().createdAt.toDate().toDateString());
       });
+
+      return userdb
   }, []);
 
   return (

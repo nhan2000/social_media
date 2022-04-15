@@ -1,21 +1,20 @@
 import styles from '../../styles/post.module.css'
-import React, {useState, useEffect} from 'react'
-import { db } from '../firebase';
+import React, {useState} from 'react'
+import { db,serverTimestamp } from '../firebase';
 
 const  SubmitComment =({postId, commenUID})=> {
 
     const [comment, setComment] = useState([]);
-
-
-    const handleComment = ()=>{
+    const handleComment = (e)=>{
+      e.preventDefault()
       db.collection('comments').doc(postId).collection('postComments').add({
           comment:comment,
-          createAt: new Date(),
-          userRef: db.doc(`/user/${commenUID.uid}`),
+          createAt: serverTimestamp(),
+          userRef: db.doc(`/users/${commenUID.uid}`),
       })
-
+      alert("Comment Success")
       setComment('');
-    // console.log("check comment ID", postId); 
+
   }
   return (
     <div>
@@ -26,9 +25,8 @@ const  SubmitComment =({postId, commenUID})=> {
                 onChange={(event) => {
                   setComment(event.target.value);
                 }}></textarea>
-              
               <div className={styles.comment_box}>
-                <button onClick={()=>handleComment()} type="button" className={styles.btn_submit}>
+                <button onClick={(e)=>handleComment(e)} type="button" className={styles.btn_submit}>
                   Submit
                 </button>
               </div>
