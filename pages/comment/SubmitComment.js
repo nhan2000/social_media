@@ -2,30 +2,21 @@ import styles from '../../styles/post.module.css'
 import React, {useState, useEffect} from 'react'
 import { db } from '../firebase';
 
-const  SubmitComment =({commentId})=> {
+const  SubmitComment =({postId, commenUID})=> {
 
     const [comment, setComment] = useState([]);
-    // const [name, setName]= useState('');
-    // useEffect(() => {
-      
-    //     db.collection('comments').doc(commentId).collection('postComments').add({
-    //         comment:comment,
-    //         createAt: new Date()
-    //     })
-    // }, [])
-    
-    const handleComment = ()=>{
-        // db.collection('comments').doc(commentId).collection('postComments').add({
-        //     comment:comment,
-        //     createAt: new Date()
-        // })
 
-      if(comment === []){
-        console.log("check comment", comment)
-      }
-        
-        
-    }
+
+    const handleComment = ()=>{
+      db.collection('comments').doc(postId).collection('postComments').add({
+          comment:comment,
+          createAt: new Date(),
+          userRef: db.doc(`/user/${commenUID.uid}`),
+      })
+
+      setComment('');
+    // console.log("check comment ID", postId); 
+  }
   return (
     <div>
         <form>
@@ -48,6 +39,6 @@ const  SubmitComment =({commentId})=> {
 
 export default SubmitComment
 
-// đầu tiên lấy UID của toàn bộ post lấy cả
+
 
 

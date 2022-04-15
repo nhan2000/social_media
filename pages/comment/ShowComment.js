@@ -1,42 +1,63 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
 
-const ShowComment = ({ user, commentId }) => {
-  const [comment, setComment] = useState([]);
+const ShowComment = ({ commenUID, postId }) => {
 
+
+  const [postComments, setpostComments] = useState([]);
+
+
+
+  // get Allcomment from Post_Id
     useEffect(()=>{
-      db.collectionGroup('postComments')
-        .onSnapshot((snap)=>{
-          let postComments = [];
+      const getComment = 
+      db.collection(`comments/${postId}/postComments`)
+        .onSnapshot( async (snap)=>{
+          let comments = [];
           snap.forEach(
             (doc)=>{
-              postComments.push({
-                idPost: doc.ref.parent.parent.id,
-                idComment: doc.id,
-                data: {
-                  content:doc.data().comment
-                }
+              comments.push({
+                id: doc.id,
+                data:doc.data(),
               })
             })
-          setComment(postComments);
+            const allComment = await Promise.all(
+              comments.map(async (comment)=>{
+                const UComment = {
+                  id:comment.id,
+                  content: comment.data.comment,
+                }
+                return UComment
+              })
+            )
+            setpostComments(allComment)
+            return allComment
         }) 
-    },[])
+        return getComment
+    },[postId])
 
-    useEffect(()=>{
-      if(!comment){
-        return
-      }
-    })
+    console.log("check getComment:", postComments);
+
+
+
   return (
     <div className="show_comment">
-      {/* Id_post ___
-      {commentId}
-      {comment.map(item=>{
-        return (
-          <li key={item.idComment}>{item.data.content}</li>
-        )
-      })
-      } */}
+
+
+       <div className="box_comment">
+      {
+        postComments.map((item)=>{
+          return (
+            <div></div>
+          )
+        })
+        
+      }
+      </div>
+
+      <style jsx>
+
+      </style>
 
     </div>
   );

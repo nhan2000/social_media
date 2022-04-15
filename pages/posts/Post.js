@@ -7,6 +7,7 @@ import Comment from "../comment/Comment";
 const Post = ({post, user}) => {
 
 
+
   return (
     <div>
       <div className={styles.flex}>
@@ -27,7 +28,7 @@ const Post = ({post, user}) => {
           Create At: {post.createAtTime}, {post.createAt}
         </p>
       </div>
-      <Comment commentId={post.id} user={user}/>
+      <Comment postId={post.id} currentUser={user}/>
     </div>
   );
 };

@@ -6,8 +6,7 @@ import Post from "./posts/Post";
 const Home = ({ user }) => {
   const [posts, setPosts] = useState([]);
   const [userPosts, setUserPosts] = useState([]);
-  // console.log("check user: ", user)
- 
+
   useEffect(() => {
     db
       .collectionGroup("userPost")

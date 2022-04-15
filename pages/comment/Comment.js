@@ -2,13 +2,14 @@
 import SubmitComment from './SubmitComment'
 import ShowComment from "./ShowComment";
 
-const Comment = ({ commentId, user}) => {
+const Comment = ({ postId, currentUser}) => {
+  // console.log("check currenUID", currentUID);
 
   return (
     <>
       <div>
-        <ShowComment commentId={commentId} user={user} />
-          <SubmitComment commentId={commentId} user={user}/>
+        <ShowComment postId={postId} commenUID={currentUser} />
+        <SubmitComment postId={postId} commenUID={currentUser}/>
       </div>
     </>
   );
