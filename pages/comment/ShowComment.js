@@ -47,11 +47,11 @@ const ShowComment = ({ commenUID, postId }) => {
       {
         postComments.map((item)=>{
           
-          return (
-            <div className={styles.item_comment} key={item.id}>
-            <span className={styles.show_name}>{item.authour}</span> ___ <span>{item.content}</span>
-            </div>
-          )
+          // return (
+          //   <div className={styles.item_comment} key={item.id}>
+          //   <span className={styles.show_name}>{item.authour}</span> ___ <span>{item.content}</span>
+          //   </div>
+          // )
 
         })
       }

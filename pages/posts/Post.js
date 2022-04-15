@@ -11,7 +11,7 @@ const Post = ({post, user}) => {
   return (
     <div>
       <div className={styles.flex}>
-       
+    
         <span className="custom_author btn">
           Author: <span>{post.authour}</span>
         </span>

@@ -31,9 +31,6 @@ const Home = ({ user }) => {
     // return () => getAllUserPosts
   }, []);
 
-  // console.log("check Userpost:", userPosts);
-
-
   useEffect(() => {
     if (!userPosts.length) {
       return;
@@ -89,10 +86,9 @@ const Home = ({ user }) => {
           {posts.map((post) => {
             return (
               <div className="card" key={post.id}>
-
                 <Post post={post} user={user}/>
                 
-                {/* <Comment posts= {post} user={user}/>
+                {/*
                 <div className="card-action">
                   <Link href={`/posts/${post.id}`}>
                     <a>Read More</a>
