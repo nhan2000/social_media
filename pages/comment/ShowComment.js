@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../firebase";
+import styles from "../../styles/comment.module.css"
 
 const ShowComment = ({ commenUID, postId }) => {
   const [postComments, setpostComments] = useState([]);
@@ -42,40 +43,18 @@ const ShowComment = ({ commenUID, postId }) => {
   // console.log("check getComment:", postComments);
 
   return (
-    <div className="show_comment">
+    <div className={styles.show_comment}>
       {
         postComments.map((item)=>{
+          
           return (
-            <div className='item_comment' key={item.id}>
-            <span className="show_name">{item.authour}</span>: <span>{item.content}</span>
+            <div className={styles.item_comment} key={item.id}>
+            <span className={styles.show_name}>{item.authour}</span> ___ <span>{item.content}</span>
             </div>
           )
 
         })
       }
-
-      <style jsx>
-        {`
-          .box_comment {
-            border: 2px solid #3498db;
-            width: 99%;
-            margin: 5px auto;
-            padding: 5px 5px;
-            border-radius: 8px;
-          }
-          .item_comment {
-            background: #b2ebf2;
-            padding: 10px;
-            margin:5px;
-            width:98%;
-            text-align: left;
-            border-radius:8px
-          }
-          .show_name  {
-            font-weight:600
-          }
-        `}
-      </style>
     </div>
   );
 };
