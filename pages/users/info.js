@@ -5,10 +5,8 @@ import Link from "next/link";
 import styles from "../../styles/info.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faSearch,
   faPencil,
   faUser,
-  faAnchor,
 } from "@fortawesome/free-solid-svg-icons";
 
 function info({ user }) {
@@ -24,8 +22,7 @@ function info({ user }) {
   useEffect(() => {
     db.collection("users")
       .doc(user.uid)
-      .get()
-      .then((doc) => {
+      .onSnapshot((doc) => {
         if (doc.data().updateAt) {
           setupdateAtTime(
             doc.data().updateAt.toDate().toLocaleTimeString("en-US")

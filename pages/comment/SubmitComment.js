@@ -15,10 +15,16 @@ const  SubmitComment =({commentId})=> {
     // }, [])
     
     const handleComment = ()=>{
-        db.collection('comments').doc(commentId).collection('postComments').add({
-            comment:comment,
-            createAt: new Date()
-        })
+        // db.collection('comments').doc(commentId).collection('postComments').add({
+        //     comment:comment,
+        //     createAt: new Date()
+        // })
+
+      if(comment === []){
+        console.log("check comment", comment)
+      }
+        
+        
     }
   return (
     <div>
@@ -42,6 +48,6 @@ const  SubmitComment =({commentId})=> {
 
 export default SubmitComment
 
-// đầu tiên lấy uID của toàn bộ post lấy cả 
+// đầu tiên lấy UID của toàn bộ post lấy cả
 
 
