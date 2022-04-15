@@ -4,6 +4,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 const Search = () => {
+  
+
+  const handleSearch = ()=>{
+    console.log("hello");
+  }
+
+
   return (
     <div>
       <div className={styles.wrap}>
@@ -13,7 +20,7 @@ const Search = () => {
             className={styles.searchTerm}
             placeholder="Looking for name?"
           />
-          <button type="button" className={styles.btnm}>
+          <button type="button" className={styles.btnm} onClick={()=>{handleSearch()}}>
             <FontAwesomeIcon
               icon={faSearch}
               style={{ fontSize: 15, color: "white" }}

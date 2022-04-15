@@ -32,7 +32,7 @@ const ShowComment = ({ commenUID, postId }) => {
             return UComment;
           })
           );
-          console.log("check allcm", allComment);
+          // console.log("check allcm", allComment);
         setpostComments(allComment);
         return allComment;
       });
