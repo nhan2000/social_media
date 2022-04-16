@@ -1,8 +1,11 @@
 
 import { useState, useEffect } from 'react'
 import { v4 as uuidv4 } from 'uuid';
-import { storage, db, serverTimestamp } from '../firebase'
+import { storage, db } from '../firebase'
 import Router from "next/router";
+import styles from "../../styles/info.module.css";
+
+
 
 
 export default function createpost({ user }) {
@@ -11,7 +14,7 @@ export default function createpost({ user }) {
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
 
-    
+
     useEffect(() => {
         if (url) {
             try {
@@ -58,31 +61,39 @@ export default function createpost({ user }) {
     }
     return (
         <div className="input-field rootdiv">
-            <h3 className='title_create'>Create Post</h3>
-            <input
-                type="text"
-                value={title}
-                placeholder="Enter Title"
-                onChange={(e) => setTitle(e.target.value)}
+            {user ?
+                <>
+                    <h3 className='title_create'>Create Post</h3>
+                    <input
+                        type="text"
+                        value={title}
+                        placeholder="Enter Title"
+                        onChange={(e) => setTitle(e.target.value)}
 
-            />
-            <textarea
-                type="text"
-                value={content}
-                placeholder="Enter Content"
-                onChange={(e) => setcontent(e.target.value)}
+                    />
+                    <textarea
+                        type="text"
+                        value={content}
+                        placeholder="Enter Content"
+                        onChange={(e) => setcontent(e.target.value)}
 
-            />
-            <div className="file-field input-field">
-                <div className="btn #fb8c00 blue darken-1">
-                    <span>Enter File</span>
-                    <input type="file" onChange={(e) => setImage(e.target.files[0])} />
-                </div>
-                <div className="file-path-wrapper">
-                    <input className="file-path validate" type="text" />
-                </div>
-            </div>
-            <button className="btn #fb8c00 blue darken-1" onClick={() => SubmitDetails()}>Create Post</button>
+                    />
+                    <div className="file-field input-field">
+                        <div className="btn #fb8c00 blue darken-1">
+                            <span>Enter File</span>
+                            <input type="file" onChange={(e) => setImage(e.target.files[0])} />
+                        </div>
+                        <div className="file-path-wrapper">
+                            <input className="file-path validate" type="text" />
+                        </div>
+                    </div>
+                    <button className="btn #fb8c00 blue darken-1" onClick={() => SubmitDetails()}>Create Post</button>
+
+                </> :
+                <>
+                    <h5 className={styles.error_show}>Please Login or Signup</h5>
+                </>}
+
 
             <style jsx>
                 {`
