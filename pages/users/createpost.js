@@ -5,15 +5,11 @@ import { storage, db } from '../firebase'
 import Router from "next/router";
 import styles from "../../styles/info.module.css";
 
-
-
-
 export default function createpost({ user }) {
     const [title, setTitle] = useState('')
     const [content, setcontent] = useState('')
     const [image, setImage] = useState(null)
     const [url, setUrl] = useState('')
-
 
     useEffect(() => {
         if (url) {

@@ -28,7 +28,6 @@ const Home = ({ user }) => {
         });
         setUserPosts(userPosts);
       });
-    // return () => getAllUserPosts
   }, []);
 
   useEffect(() => {
@@ -73,7 +72,6 @@ const Home = ({ user }) => {
       });
       setPosts(userPostList);
     });
-    // return getAllUsers
   }, [userPosts]);
 
 
@@ -86,8 +84,8 @@ const Home = ({ user }) => {
           {posts.map((post) => {
             return (
               <div className="card" key={post.id}>
-                <Post post={post} user={user}/>
-                
+                <Post post={post} user={user} />
+
                 {/*
                 <div className="card-action">
                   <Link href={`/posts/${post.id}`}>
